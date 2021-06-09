@@ -116,6 +116,11 @@ export default {
   props: {
     msg: String,
   },
+  methods: {
+    sayChina() {
+      console.log('你好，中国')
+    }
+  }
 };
 </script>
 
