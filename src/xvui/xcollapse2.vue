@@ -1,17 +1,15 @@
 <template>
   <div class='xcollapse'>
-    <template v-if="!info.children">
-      <router-link :to="info.path">
-        <div class="title_wrapper" @click="GetItemInfo(info)">{{info.name}}</div>
-      </router-link>
-    </template>
-    <template v-else>
-      <div class="title_wrapper" @click="ToggleContent(info)">
-        <div class="title">{{info.name||defaultTitle}}</div>
-        <span class="icon" :class="{textRotate: spread}">{{iconText}}</span>
-      </div>
-      <div class="content_wrapper" :class="{close: !spread}">
-        <Xcollapse v-for="item in info.children" :key="item.path" :info="item" />
+    <template v-for="item in list">
+      <router-link class="link" tag="div" v-if="!item.children" :key="item.path" :to="item.path">{{item.name}}</router-link>
+      <div class="text" v-else :key="item.path">
+        <div class="title_wrapper" @click="ToggleContent(item)">
+          <div class="title">{{item.name||defaultTitle}}</div>
+          <span class="icon" :class="{textRotate: item.isSpread}">></span>
+        </div>
+        <div class="content_wrapper" :class="{close: !item.isSpread}">
+          <Xcollapse2 :list="item.children" />
+        </div>
       </div>
     </template>
   </div>  
@@ -20,12 +18,12 @@
 <script>
 
 export default {
-  name: 'Xcollapse',
-  props: ['info'],
+  name: 'Xcollapse2',
+  props: ['list'],
   data() {
     return {
       defaultTitle: '面板标题',
-      spread: true,
+      spread: false,
       curPath: 'stack'
     }
   },
@@ -35,8 +33,9 @@ export default {
     }
   },
   methods: {
-    ToggleContent(info) {
-      if(this.info.children && this.info.children.length) this.spread = !this.spread
+    ToggleContent(item) {
+      console.log('item==', item.isSpread)
+      item.isSpread = !item.isSpread
     },
     GetItemInfo(path) {
       this.curPath = path
@@ -49,18 +48,15 @@ export default {
 <style lang='less' scoped>
 .xcollapse {
   a {
-    text-decoration: none;
-    color: #333;
-    // display: block;
+    // text-decoration: none;
+    // color: #333;
     // height: 100%;
     // width: 100%;
-    // margin: 16px;
-    &.router-link-active, &.router-link-exact-active {
+    &.router-link-exact-active {
       color: #42b983;
     }
   }
   .title_wrapper {
-    box-sizing: border-box;
     padding: 16px;
     display: flex;
     justify-content: space-between;
@@ -100,11 +96,6 @@ export default {
       .content_wrapper {
         a, .title {
           text-indent: 30px;
-        }
-        .content_wrapper {
-          a, .title {
-            text-indent: 40px;
-          }
         }
       }
     }

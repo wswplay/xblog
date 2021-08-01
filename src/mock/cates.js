@@ -1,15 +1,15 @@
 export const CateList = [
   {
     name: '内存与栈堆',
-    path: 'memoryStack',
+    isSpread: false,
     children: [
       {
         name: '内存',
-        path: 'memory',
+        path: '/memory',
       },
       {
         name: '栈',
-        path: 'stack',
+        path: '/stack',
       },
       {
         name: '堆',
@@ -20,6 +20,7 @@ export const CateList = [
   {
     name: '数据结构',
     path: 'datastrcuter',
+    isSpread: true,
     children: [
       {
         name: '对象',
@@ -32,6 +33,7 @@ export const CateList = [
           {
             name: '普通对象',
             path: 'nomral',
+            isSpread: true,
             children: [
               {
                 name: '普11111',
@@ -40,6 +42,12 @@ export const CateList = [
               {
                 name: '普222222',
                 path: 'pu2',
+                children: [
+                  {
+                    name: '小22222222',
+                    path: 'm2'
+                  },
+                ]
               },
             ]
           }
