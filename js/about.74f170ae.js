@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["about"],{f820:function(t,n,a){"use strict";a.r(n);var e=function(){var t=this,n=t.$createElement,a=t._self._c||n;return a("div",{staticClass:"about"},[a("router-link",{attrs:{to:"/"}},[t._v("首页")]),a("h1",[t._v("This is an about page")]),t._v(" 这里有文字的啊，是不是 ")],1)},u=[],o={data:function(){return{}},mounted:function(){}},s=o,i=a("2877"),r=Object(i["a"])(s,e,u,!1,null,"32d15823",null);n["default"]=r.exports}}]);
+//# sourceMappingURL=about.74f170ae.js.map
